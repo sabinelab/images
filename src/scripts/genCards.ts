@@ -18,9 +18,11 @@ for(const player of getPlayers()) {
     let collection: Key
 
     if(player.collection.toLowerCase().startsWith('valorant masters')) {
-      collection = 'valorant masters' as Key
+      collection = 'valorant masters'
     }
-
+    else if(player.collection.toLowerCase().startsWith('valorant champions')) {
+      collection = 'valorant champions'
+    }
     else collection = player.collection.toLowerCase() as Key
 
     const overlays: sharp.OverlayOptions[] = [
