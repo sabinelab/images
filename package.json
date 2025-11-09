@@ -15,8 +15,8 @@
   "type": "module",
   "description": "",
   "dependencies": {
+    "@sabinelab/players": "^1.1.0",
     "elysia": "^1.4.15",
-    "players": "github:levisantosp/sabine-players",
     "sharp": "^0.34.4"
   },
   "devDependencies": {
