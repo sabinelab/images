@@ -239,6 +239,46 @@ export const config = {
           left: 65
         }
       }
+    },
+    lockin: {
+      role: {
+        left: -330,
+        top: -200
+      },
+      country: {
+        top: 564,
+        left: 345
+      },
+      team: {
+        top: 860,
+        left: 285
+      },
+      stats: {
+        aim: {
+          top: 220,
+          left: -120
+        },
+        hs: {
+          top: 350,
+          left: -120
+        },
+        movement: {
+          top: 480,
+          left: -120
+        },
+        aggression: {
+          top: 220,
+          left: 120
+        },
+        acs: {
+          top: 350,
+          left: 120
+        },
+        gamesense: {
+          top: 480,
+          left: 120
+        }
+      }
     }
   },
   ovr: {
@@ -263,6 +303,10 @@ export const config = {
       top: -510
     },
     'valorant champions': {
+      left: -450,
+      top: -510
+    },
+    lockin: {
       left: -450,
       top: -510
     }
@@ -399,6 +443,32 @@ export const config = {
       }
     },
     'valorant champions': {
+      aim: {
+        left: -410,
+        top: 220
+      },
+      hs: {
+        left: -410,
+        top: 350
+      },
+      movement: {
+        left: -410,
+        top: 480
+      },
+      aggression: {
+        left: 225,
+        top: 220
+      },
+      acs: {
+        left: 225,
+        top: 350
+      },
+      gamesense: {
+        left: 225,
+        top: 480
+      }
+    },
+    lockin: {
       aim: {
         left: -410,
         top: 220

@@ -1,6 +1,6 @@
 import sharp from 'sharp'
 import fs from 'node:fs'
-import { getPlayers } from 'players'
+import { getPlayers } from '@sabinelab/players'
 import { config, type Key } from '../config.ts'
 
 const started = Date.now()
@@ -14,7 +14,10 @@ if(!fs.existsSync('output')) {
 for(const player of getPlayers()) {
   const base = sharp(`assets/cards/${player.id}.png`)
 
-  if(player.collection.toLowerCase().startsWith('valorant')) {
+  if(
+    player.collection.toLowerCase().startsWith('valorant')
+    || player.collection.toLowerCase().startsWith('vct')
+  ) {
     let collection: Key
 
     if(player.collection.toLowerCase().startsWith('valorant masters')) {
@@ -22,6 +25,9 @@ for(const player of getPlayers()) {
     }
     else if(player.collection.toLowerCase().startsWith('valorant champions')) {
       collection = 'valorant champions'
+    }
+    else if(player.collection.toLowerCase().includes('lock//in')) {
+      collection = 'lockin'
     }
     else collection = player.collection.toLowerCase() as Key
 
