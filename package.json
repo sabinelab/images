@@ -15,7 +15,7 @@
   "type": "module",
   "description": "",
   "dependencies": {
-    "@sabinelab/players": "^1.1.3",
+    "@sabinelab/players": "^1.1.4",
     "elysia": "^1.4.16",
     "sharp": "^0.34.5"
   },
