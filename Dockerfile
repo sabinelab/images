@@ -1,4 +1,4 @@
-FROM oven/bun:1-alpine
+FROM oven/bun:1.3.2-alpine
 
 WORKDIR /app
 
@@ -8,6 +8,6 @@ COPY . .
 RUN bun i --frozen-lockfile
 RUN bun compile
 RUN rm -rf output && mkdir output
-RUN node dist/scripts/genCards.js
+RUN bun generate
 
 CMD ["bun", "start"]
