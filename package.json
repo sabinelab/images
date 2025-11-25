@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
-    "test": "node test.ts",
+    "test": "bun test.ts",
     "start": "bun .",
     "compile": "bun eslint . && rm -rf dist && tsc",
     "dev": "bun --watch src/index.ts",
-    "generate": "node src/scripts/genCards.ts"
+    "generate": "bun src/scripts/genCards.ts"
   },
   "keywords": [],
   "author": "",
