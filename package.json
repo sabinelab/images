@@ -16,7 +16,7 @@
   "description": "",
   "dependencies": {
     "@sabinelab/players": "^1.1.6",
-    "elysia": "^1.4.16",
+    "elysia": "^1.4.17",
     "sharp": "^0.34.5"
   },
   "devDependencies": {
@@ -25,6 +25,6 @@
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.48.0"
+    "typescript-eslint": "^8.48.1"
   }
 }
