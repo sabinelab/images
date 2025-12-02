@@ -4,26 +4,26 @@ import { access, readFile } from 'node:fs/promises'
 import path from 'node:path'
 
 export const getCard = new Elysia()
-  .get('/cards/:id', async({ params, set }) => {
-    const cardPath = path.resolve('output', params.id)
+    .get('/cards/:id', async({ params, set }) => {
+        const cardPath = path.resolve('output', params.id)
 
-    try {
-      await access(cardPath, constants.R_OK)
+        try {
+            await access(cardPath, constants.R_OK)
 
-      const buffer = await readFile(cardPath)
+            const buffer = await readFile(cardPath)
 
-      set.headers['content-type'] = 'image/png'
+            set.headers['content-type'] = 'image/png'
 
-      return buffer
-    }
+            return buffer
+        }
 
-    catch(e) {
-      if(!(e instanceof Error)) {
-        console.error(e)
-      }
+        catch(e) {
+            if(!(e instanceof Error)) {
+                console.error(e)
+            }
 
-      set.status = 404
+            set.status = 404
 
-      return { error: 'Unknown card' }
-    }
-  })
+            return { error: 'Unknown card' }
+        }
+    })

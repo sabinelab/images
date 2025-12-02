@@ -1,30 +1,31 @@
 {
-  "name": "sabine-images",
-  "version": "1.0.0",
-  "main": "src/index.ts",
-  "scripts": {
-    "test": "bun test.ts",
-    "start": "bun .",
-    "compile": "bun eslint . && rm -rf dist && tsc",
-    "dev": "bun --watch src/index.ts",
-    "generate": "bun src/scripts/genCards.ts"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "description": "",
-  "dependencies": {
-    "@sabinelab/players": "^1.1.6",
-    "elysia": "^1.4.17",
-    "sharp": "^0.34.5"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@types/bun": "^1.3.3",
-    "eslint": "^9.39.1",
-    "globals": "^16.5.0",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.48.1"
-  }
+    "name": "sabine-images",
+    "version": "1.0.0",
+    "main": "src/index.ts",
+    "scripts": {
+        "test": "bun test.ts",
+        "start": "bun .",
+        "compile": "bun eslint . && tsc",
+        "dev": "bun --watch src/index.ts",
+        "generate": "bun src/scripts/genCards.ts",
+        "type-check": "tsc"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "module",
+    "description": "",
+    "dependencies": {
+        "@sabinelab/players": "^1.1.6",
+        "elysia": "^1.4.17",
+        "sharp": "^0.34.5"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.39.1",
+        "@types/bun": "^1.3.3",
+        "eslint": "^9.39.1",
+        "globals": "^16.5.0",
+        "typescript": "^5.9.3",
+        "typescript-eslint": "^8.48.1"
+    }
 }
