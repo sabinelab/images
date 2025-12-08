@@ -1,13 +1,14 @@
 {
   "name": "sabine-images",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "test": "node test.ts",
+    "test": "bun test.ts",
     "start": "bun .",
-    "compile": "bun eslint . && rm -rf dist && tsc",
+    "compile": "bun eslint . && tsgo",
     "dev": "bun --watch src/index.ts",
-    "generate": "node src/scripts/genCards.ts"
+    "generate": "bun src/scripts/genCards.ts",
+    "type-check": "tsgo"
   },
   "keywords": [],
   "author": "",
@@ -15,16 +16,17 @@
   "type": "module",
   "description": "",
   "dependencies": {
-    "@sabinelab/players": "^1.1.1",
-    "elysia": "^1.4.15",
+    "@sabinelab/players": "^1.2.0",
+    "elysia": "^1.4.18",
     "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
-    "@types/bun": "^1.3.2",
+    "@types/bun": "^1.3.4",
+    "@typescript/native-preview": "^7.0.0-dev.20251208.1",
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.3"
+    "typescript-eslint": "^8.49.0"
   }
 }

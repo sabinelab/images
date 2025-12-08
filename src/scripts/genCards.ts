@@ -11,12 +11,15 @@ if(!fs.existsSync('output')) {
   fs.mkdirSync('output')
 }
 
+const promises: Promise<sharp.OutputInfo>[] = []
+
 for(const player of getPlayers()) {
   const base = sharp(`assets/cards/${player.id}.png`)
 
   if(
-    player.collection.toLowerCase().startsWith('valorant')
-    || player.collection.toLowerCase().startsWith('vct')
+    player.collection.toLowerCase().startsWith('valorant') ||
+    player.collection.toLowerCase().startsWith('vct') ||
+    player.collection.toLowerCase() === 'base card'
   ) {
     let collection: Key
 
@@ -211,7 +214,7 @@ for(const player of getPlayers()) {
       })
     }
 
-    base.composite(overlays).toFile(`output/${player.id}.png`)
+    promises.push(base.composite(overlays).toFile(`output/${player.id}.png`))
   }
 
   else {
@@ -414,8 +417,10 @@ for(const player of getPlayers()) {
       })
     }
 
-    base.composite(overlays).toFile(`output/${player.id}.png`)
+    promises.push(base.composite(overlays).toFile(`output/${player.id}.png`))
   }
 }
+
+await Promise.allSettled(promises)
 
 console.log(`cards generated in ${((Date.now() - started) / 1000).toFixed(1)}s`)

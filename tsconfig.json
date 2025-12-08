@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2023",
-    "module": "nodenext",
-    "lib": ["ES2023", "DOM"],
+    "module": "esnext",
+    "lib": [
+      "ES2023",
+      "DOM"
+    ],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -11,12 +14,7 @@
     "resolveJsonModule": true,
     "rewriteRelativeImportExtensions": true,
     "verbatimModuleSyntax": true,
-    "outDir": "./dist"
-  },
-  "include": [
-    "src/**/*.json",
-    "env.d.ts",
-    "src"
-  ],
-  "exclude": ["node_modules"]
+    "noEmit": true,
+    "moduleResolution": "bundler"
+  }
 }

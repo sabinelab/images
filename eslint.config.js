@@ -1,21 +1,21 @@
 import js from '@eslint/js'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
-import { defineConfig } from 'eslint/config'
+import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  {
-    ignores: [
-      '*test*',
-      'dist'
-    ]
-  },
+  globalIgnores([
+    '**/test*',
+    'dist',
+    'scripts',
+    'prisma.config.js'
+  ]),
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts}'],
     plugins: { js },
     extends: ['js/recommended']
   },
-  { 
+  {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts}'],
     languageOptions: { globals: globals.browser }
   },
@@ -23,7 +23,8 @@ export default defineConfig([
   {
     rules: {
       indent: ['error', 2, {
-        ignoredNodes: ['CallExpression > MemberExpression']
+        ignoredNodes: ['CallExpression > MemberExpression'],
+        SwitchCase: 1
       }],
       quotes: ['error', 'single'],
       'keyword-spacing': ['error', {
