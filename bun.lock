@@ -5,7 +5,7 @@
     "": {
       "name": "sabine-images",
       "dependencies": {
-        "@sabinelab/players": "^1.1.6",
+        "@sabinelab/players": "^1.2.0",
         "elysia": "^1.4.18",
         "sharp": "^0.34.5",
       },
@@ -101,7 +101,7 @@
 
     "@img/sharp-win32-x64": ["@img/sharp-win32-x64@0.34.5", "", { "os": "win32", "cpu": "x64" }, "sha512-+29YMsqY2/9eFEiW93eqWnuLcWcufowXewwSNIT6UwZdUUCrM3oFjMWH/Z6/TMmb4hlFenmfAVbpWeup2jryCw=="],
 
-    "@sabinelab/players": ["@sabinelab/players@1.1.6", "https://npm.pkg.github.com/download/@sabinelab/players/1.1.6/0d84828872e1d345fb39bd28fa54e1b7bcbd667f", { "dependencies": { "clipboardy": "^5.0.0" } }, "sha512-z47987c5reIoIBbH0cQajgz55q7Pq/2nSMUsZC9OUcWcqZHQhXjEvUytq0YnvwHb82qXQjaxwvCN2wh8d9Vh2g=="],
+    "@sabinelab/players": ["@sabinelab/players@1.2.0", "https://npm.pkg.github.com/download/@sabinelab/players/1.2.0/07717528f5ad77e812a224665291cf93f0d285a6", { "dependencies": { "clipboardy": "^5.0.1" } }, "sha512-tlzc8F66vHQyNMSGBMA20f10A+X4itbqQv3sKDZY+wkl986kqX6/i4fmVleQvEH21rQO1YNQoQuV5C3ijvoruA=="],
 
     "@sec-ant/readable-stream": ["@sec-ant/readable-stream@0.4.1", "", {}, "sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg=="],
 
@@ -177,7 +177,7 @@
 
     "chalk": ["chalk@4.1.2", "", { "dependencies": { "ansi-styles": "^4.1.0", "supports-color": "^7.1.0" } }, "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA=="],
 
-    "clipboardy": ["clipboardy@5.0.0", "", { "dependencies": { "execa": "^9.6.0", "is-wayland": "^0.1.0", "is-wsl": "^3.1.0", "is64bit": "^2.0.0" } }, "sha512-MQfKHaD09eP80Pev4qBxZLbxJK/ONnqfSYAPlCmPh+7BDboYtO/3BmB6HGzxDIT0SlTRc2tzS8lQqfcdLtZ0Kg=="],
+    "clipboardy": ["clipboardy@5.0.1", "", { "dependencies": { "execa": "^9.6.0", "is-wayland": "^0.1.0", "is-wsl": "^3.1.0", "is64bit": "^2.0.0" } }, "sha512-pJ5ZDWjOT593Nli4TqlRLy33KomlAPxIFntMFxXrCqJON1cGcGPT5nNFxRxJ9m4HbfrccsYve7XwXjywW6nXVw=="],
 
     "color-convert": ["color-convert@2.0.1", "", { "dependencies": { "color-name": "~1.1.4" } }, "sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ=="],
 
