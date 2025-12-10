@@ -14,7 +14,7 @@ if(!fs.existsSync('output')) {
 const promises: (() => Promise<unknown>)[] = []
 
 for(const player of getPlayers()) {
-  const thunk = async () => {
+  const thunk = async() => {
     const base = sharp(`assets/cards/${player.id}.png`)
 
     if(
