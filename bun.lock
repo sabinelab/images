@@ -5,7 +5,7 @@
     "": {
       "name": "sabine-images",
       "dependencies": {
-        "@sabinelab/players": "1.4.0",
+        "@sabinelab/players": "1.4.1",
         "elysia": "1.4.19",
         "sharp": "0.34.5",
       },
@@ -90,7 +90,7 @@
 
     "@img/sharp-win32-x64": ["@img/sharp-win32-x64@0.34.5", "", { "os": "win32", "cpu": "x64" }, "sha512-+29YMsqY2/9eFEiW93eqWnuLcWcufowXewwSNIT6UwZdUUCrM3oFjMWH/Z6/TMmb4hlFenmfAVbpWeup2jryCw=="],
 
-    "@sabinelab/players": ["@sabinelab/players@1.4.0", "https://npm.pkg.github.com/download/@sabinelab/players/1.4.0/5440fb0fdfa6144b9c3501dbe027b56aab296607", {}, "sha512-xUPq3Ll38EEjlc8oCmJrQFwQbsT5Rq72iMIvB42i3MBxLtzPh/oylD7PPdICM/egg6HP6SCBlUXzQDhEh2shmQ=="],
+    "@sabinelab/players": ["@sabinelab/players@1.4.1", "https://npm.pkg.github.com/download/@sabinelab/players/1.4.1/4d971095f5913d03f7ef1d65d1a1d4912eaca722", {}, "sha512-p291K1fQiNTWSWaG4dX3N3r5Df369RRHhn1mTA3ezUjDem0gMb7PaZEBPrLayiBM6IWC9tNn+axzFXHSKahYyQ=="],
 
     "@sinclair/typebox": ["@sinclair/typebox@0.34.41", "", {}, "sha512-6gS8pZzSXdyRHTIqoqSVknxolr1kzfy4/CeDnrzsVz8TTIWUbOBr6gnzOmTYJ3eXQNh4IYHIGi5aIL7sOZ2G/g=="],
 
