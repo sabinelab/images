@@ -1,10 +1,11 @@
-import { Elysia } from 'elysia'
 import constants from 'node:constants'
 import { access, readFile } from 'node:fs/promises'
 import path from 'node:path'
+import { Elysia } from 'elysia'
 
-export const getCard = new Elysia()
-  .get('/cards/:id', async({ params, set }) => {
+export const getCard = new Elysia().get(
+  '/cards/:id',
+  async ({ params, set }) => {
     const cardPath = path.resolve('output', params.id)
 
     try {
@@ -15,10 +16,8 @@ export const getCard = new Elysia()
       set.headers['content-type'] = 'image/png'
 
       return buffer
-    }
-
-    catch(e) {
-      if(!(e instanceof Error)) {
+    } catch (e) {
+      if (!(e instanceof Error)) {
         console.error(e)
       }
 
@@ -26,4 +25,5 @@ export const getCard = new Elysia()
 
       return { error: 'Unknown card' }
     }
-  })
+  }
+)

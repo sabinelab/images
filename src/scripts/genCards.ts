@@ -1,23 +1,23 @@
-import sharp from 'sharp'
 import fs from 'node:fs'
 import { getPlayers } from '@sabinelab/players'
+import sharp from 'sharp'
 import { config, type Key } from '../config.ts'
 
 const started = Date.now()
 
 console.log('generating cards...')
 
-if(!fs.existsSync('output')) {
+if (!fs.existsSync('output')) {
   fs.mkdirSync('output')
 }
 
 const promises: (() => Promise<unknown>)[] = []
 
-for(const player of getPlayers()) {
-  const thunk = async() => {
+for (const player of getPlayers()) {
+  const thunk = async () => {
     const base = sharp(`assets/cards/${player.id}.png`)
 
-    if(
+    if (
       player.collection.toLowerCase().startsWith('valorant') ||
       player.collection.toLowerCase().startsWith('vct') ||
       player.collection.toLowerCase() === 'base card' ||
@@ -25,16 +25,15 @@ for(const player of getPlayers()) {
     ) {
       let collection: Key
 
-      if(player.collection.toLowerCase().startsWith('valorant masters')) {
+      if (player.collection.toLowerCase().startsWith('valorant masters')) {
         collection = 'valorant masters'
-      }
-      else if(player.collection.toLowerCase().startsWith('valorant champions')) {
+      } else if (
+        player.collection.toLowerCase().startsWith('valorant champions')
+      ) {
         collection = 'valorant champions'
-      }
-      else if(player.collection.toLowerCase().includes('lock//in')) {
+      } else if (player.collection.toLowerCase().includes('lock//in')) {
         collection = 'lockin'
-      }
-      else collection = player.collection.toLowerCase() as Key
+      } else collection = player.collection.toLowerCase() as Key
 
       const overlays: sharp.OverlayOptions[] = [
         {
@@ -43,12 +42,16 @@ for(const player of getPlayers()) {
           top: config.overlay[collection].role.top
         },
         {
-          input: await sharp(`assets/countries/${player.country}.png`).resize(150, 150).toBuffer(),
+          input: await sharp(`assets/countries/${player.country}.png`)
+            .resize(150, 150)
+            .toBuffer(),
           top: config.overlay[collection].country.top,
           left: config.overlay[collection].country.left
         },
         {
-          input: await sharp(`assets/teams/${player.team}.png`).resize(150, 150).toBuffer(),
+          input: await sharp(`assets/teams/${player.team}.png`)
+            .resize(150, 150)
+            .toBuffer(),
           top: config.overlay[collection].team.top,
           left: config.overlay[collection].team.left
         },
@@ -89,11 +92,11 @@ for(const player of getPlayers()) {
       let left: number = config.ovr[collection].left
       const sum = 65
 
-      if(ovr.length === 3) {
+      if (ovr.length === 3) {
         left -= 25
       }
 
-      for(const i in ovr.split('')) {
+      for (const i in ovr.split('')) {
         left += sum + 20
 
         const n = ovr[i]
@@ -114,11 +117,11 @@ for(const player of getPlayers()) {
 
       left = config.stats[collection].aim.left
 
-      if(aim.length === 3) {
+      if (aim.length === 3) {
         left -= 60
       }
 
-      for(const i in aim.split('')) {
+      for (const i in aim.split('')) {
         left += sum
 
         const n = aim[i]
@@ -132,11 +135,11 @@ for(const player of getPlayers()) {
 
       left = config.stats[collection].hs.left
 
-      if(hs.length === 3) {
+      if (hs.length === 3) {
         left -= 60
       }
 
-      for(const i in hs.split('')) {
+      for (const i in hs.split('')) {
         left += sum
 
         const n = hs[i]
@@ -150,11 +153,11 @@ for(const player of getPlayers()) {
 
       left = config.stats[collection].movement.left
 
-      if(mov.length === 3) {
+      if (mov.length === 3) {
         left -= 60
       }
 
-      for(const i in mov.split('')) {
+      for (const i in mov.split('')) {
         left += sum
 
         const n = mov[i]
@@ -168,11 +171,11 @@ for(const player of getPlayers()) {
 
       left = config.stats[collection].aggression.left
 
-      if(agg.length === 3) {
+      if (agg.length === 3) {
         left -= 15
       }
 
-      for(const i in agg.split('')) {
+      for (const i in agg.split('')) {
         left += sum
 
         const n = agg[i]
@@ -186,11 +189,11 @@ for(const player of getPlayers()) {
 
       left = config.stats[collection].acs.left
 
-      if(acs.length === 3) {
+      if (acs.length === 3) {
         left -= 15
       }
 
-      for(const i in acs.split('')) {
+      for (const i in acs.split('')) {
         left += sum
 
         const n = acs[i]
@@ -204,11 +207,11 @@ for(const player of getPlayers()) {
 
       left = config.stats[collection].gamesense.left
 
-      if(gms.length === 3) {
+      if (gms.length === 3) {
         left -= 15
       }
 
-      for(const i in gms.split('')) {
+      for (const i in gms.split('')) {
         left += sum
 
         const n = gms[i]
@@ -221,35 +224,29 @@ for(const player of getPlayers()) {
       }
 
       await base.composite(overlays).toFile(`output/${player.id}.png`)
-    }
-
-    else {
+    } else {
       const base = sharp(`assets/cards/${player.id}.png`)
 
       let collection: Key
 
-      if(player.collection.toLowerCase().startsWith('masters')) {
+      if (player.collection.toLowerCase().startsWith('masters')) {
         collection = 'masters' as Key
-      }
-
-      else if(player.collection.toLowerCase().startsWith('champions')) {
+      } else if (player.collection.toLowerCase().startsWith('champions')) {
         collection = 'champions' as Key
-      }
-
-      else if(player.collection.toLowerCase().startsWith('triple crown')) {
+      } else if (player.collection.toLowerCase().startsWith('triple crown')) {
         collection = 'triple crown' as Key
-      }
+      } else collection = player.collection.toLowerCase() as Key
 
-      else collection = player.collection.toLowerCase() as Key
-
-      if(!config.overlay[collection]) {
+      if (!config.overlay[collection]) {
         collection = 'base'
       }
 
       const overlays: sharp.OverlayOptions[] = [
         {
           input: `assets/roles/${collection}/${player.role}.png`,
-          left: config.overlay[collection].role.left + (player.role === 'initiator' ? 20 : 0),
+          left:
+            config.overlay[collection].role.left +
+            (player.role === 'initiator' ? 20 : 0),
           top: config.overlay[collection].role.top
         },
         {
@@ -258,7 +255,9 @@ for(const player of getPlayers()) {
           left: config.overlay[collection].country.left
         },
         {
-          input: await sharp(`assets/teams/${player.team}.png`).resize(100, 100).toBuffer(),
+          input: await sharp(`assets/teams/${player.team}.png`)
+            .resize(100, 100)
+            .toBuffer(),
           top: config.overlay[collection].team.top,
           left: config.overlay[collection].team.left
         },
@@ -298,11 +297,11 @@ for(const player of getPlayers()) {
 
       let left: number = config.ovr[collection].left
 
-      if(ovr.length === 3) {
+      if (ovr.length === 3) {
         left -= 25
       }
 
-      for(const i in ovr.split('')) {
+      for (const i in ovr.split('')) {
         left += 40
 
         const n = ovr[i]
@@ -323,11 +322,11 @@ for(const player of getPlayers()) {
 
       left = config.stats[collection].aim.left
 
-      if(aim.length === 3) {
+      if (aim.length === 3) {
         left -= 20
       }
 
-      for(const i in aim.split('')) {
+      for (const i in aim.split('')) {
         left += 30
 
         const n = aim[i]
@@ -341,7 +340,7 @@ for(const player of getPlayers()) {
 
       left = config.stats[collection].hs.left
 
-      for(const i in hs.split('')) {
+      for (const i in hs.split('')) {
         const n = hs[i]
 
         overlays.push({
@@ -353,11 +352,11 @@ for(const player of getPlayers()) {
 
       left = config.stats[collection].movement.left
 
-      if(mov.length === 3) {
+      if (mov.length === 3) {
         left -= 20
       }
 
-      for(const i in mov.split('')) {
+      for (const i in mov.split('')) {
         left += 30
 
         const n = mov[i]
@@ -371,11 +370,11 @@ for(const player of getPlayers()) {
 
       left = config.stats[collection].aggression.left
 
-      if(agg.length === 3) {
+      if (agg.length === 3) {
         left -= 15
       }
 
-      for(const i in agg.split('')) {
+      for (const i in agg.split('')) {
         left += 30
 
         const n = agg[i]
@@ -389,11 +388,11 @@ for(const player of getPlayers()) {
 
       left = config.stats[collection].acs.left
 
-      if(acs.length === 3) {
+      if (acs.length === 3) {
         left -= 15
       }
 
-      for(const i in acs.split('')) {
+      for (const i in acs.split('')) {
         left += 30
 
         const n = acs[i]
@@ -407,11 +406,11 @@ for(const player of getPlayers()) {
 
       left = config.stats[collection].gamesense.left
 
-      if(gms.length === 3) {
+      if (gms.length === 3) {
         left -= 15
       }
 
-      for(const i in gms.split('')) {
+      for (const i in gms.split('')) {
         left += 30
 
         const n = gms[i]
