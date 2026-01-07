@@ -429,6 +429,6 @@ for (const player of getPlayers()) {
   promises.push(thunk)
 }
 
-await Promise.allSettled(promises.map(thunk => thunk()))
+await Promise.all(promises.map(thunk => thunk()))
 
 console.log(`cards generated in ${((Date.now() - started) / 1000).toFixed(1)}s`)
