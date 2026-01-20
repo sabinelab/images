@@ -109,10 +109,10 @@ for (const player of getPlayers()) {
       }
 
       const aim = Math.floor(player.aim).toString()
-      const hs = Math.floor(player.HS).toString()
+      const hs = Math.floor(player.hs).toString()
       const mov = Math.floor(player.movement).toString()
       const agg = Math.floor(player.aggression).toString()
-      const acs = Math.floor(player.ACS).toString()
+      const acs = Math.floor(player.acs).toString()
       const gms = Math.floor(player.gamesense).toString()
 
       left = config.stats[collection].aim.left
@@ -314,10 +314,10 @@ for (const player of getPlayers()) {
       }
 
       const aim = Math.floor(player.aim).toString()
-      const hs = Math.floor(player.HS).toString()
+      const hs = Math.floor(player.hs).toString()
       const mov = Math.floor(player.movement).toString()
       const agg = Math.floor(player.aggression).toString()
-      const acs = Math.floor(player.ACS).toString()
+      const acs = Math.floor(player.acs).toString()
       const gms = Math.floor(player.gamesense).toString()
 
       left = config.stats[collection].aim.left
