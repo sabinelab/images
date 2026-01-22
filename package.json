@@ -19,6 +19,7 @@
   "dependencies": {
     "@sabinelab/players": "1.7.2",
     "elysia": "1.4.22",
+    "p-limit": "7.2.0",
     "sharp": "0.34.5"
   },
   "devDependencies": {
