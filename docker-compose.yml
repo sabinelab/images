@@ -3,10 +3,16 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
+      secrets:
+        - env
     image: sabine-images
     container_name: sabine-images
     restart: unless-stopped
     ports:
-      - "${PORT}:${PORT}"
+      - 8000:8000
     env_file:
       - .env
+
+secrets:
+  env:
+    file: .env
