@@ -3,7 +3,7 @@ import { Elysia, NotFoundError, t } from 'elysia'
 import sharp from 'sharp'
 import { config, type Key } from '../config'
 
-const players = new Set(getPlayers().map(p => p.id))
+const players = new Set(getPlayers().map((p) => p.id))
 sharp.concurrency(1)
 sharp.cache(true)
 
