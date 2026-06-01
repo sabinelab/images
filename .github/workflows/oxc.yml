@@ -24,6 +24,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      packages: read
 
     steps:
       - name: checkout code
@@ -40,6 +41,8 @@ jobs:
 
       - name: install dependencies
         run: bun ci
+        env:
+          GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: run oxlint and oxfmt autofix
         if: github.event_name == 'push'
