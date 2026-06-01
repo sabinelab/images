@@ -7,6 +7,7 @@ on:
       - '.gitignore'
       - 'README*'
       - 'LICENSE'
+      - 'assets'
   pull_request:
     branches: ['**']
     paths-ignore:
@@ -15,6 +16,7 @@ on:
       - 'README*'
       - 'LICENSE'
       - '.github/**'
+      - 'assets'
 
 jobs:
   format-and-lint:
