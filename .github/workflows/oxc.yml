@@ -1,0 +1,81 @@
+name: oxc format and check
+on:
+  push:
+    branches: ['**']
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+      - 'README*'
+      - 'LICENSE'
+  pull_request:
+    branches: ['**']
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+      - 'README*'
+      - 'LICENSE'
+      - '.github/**'
+
+jobs:
+  format-and-lint:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref || github.ref }}
+          persist-credentials: true
+
+      - name: setup bun
+        uses: oven-sh/setup-bun@main
+        with:
+          bun-version-file: package.json
+
+      - name: install dependencies
+        run: bun ci
+
+      - name: run oxlint and oxfmt autofix
+        if: github.event_name == 'push'
+        run: |
+          bun lint --fix
+          bun fmt
+
+      - name: commit changes
+        if: github.event_name == 'push'
+        uses: stefanzweifel/git-auto-commit-action@master
+        with:
+          commit_message: 'style: run oxc autofix'
+          commit_user_name: github-actions[bot]
+          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          commit_author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+
+      - name: write deploy metadata
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          {
+            echo "base_sha=${{ github.event.before }}"
+            echo "deploy_sha=$(git rev-parse HEAD)"
+          } > deploy.env
+
+      - name: upload deploy metadata
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@main
+        with:
+          name: deploy-metadata
+          path: deploy.env
+          retention-days: 1
+
+      - name: check formatting
+        if: github.event_name == 'pull_request'
+        run: bun fmt --check
+
+      - name: run oxlint with github annotations
+        if: github.event_name == 'pull_request'
+        run: bun lint --format=github
