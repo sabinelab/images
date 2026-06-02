@@ -1,4 +1,4 @@
-FROM oven/bun:1.3.11-alpine
+FROM oven/bun:1.3.14-alpine
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ COPY .npmrc ./
 
 RUN --mount=type=secret,id=env,target=/app/.env \
     export GITHUB_AUTH_TOKEN=$(grep GITHUB_AUTH_TOKEN /app/.env | cut -d '=' -f2) && \
-    bun i --frozen-lockfile
+    bun ci
 
 COPY . .
 
