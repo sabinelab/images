@@ -17,15 +17,15 @@
     "fmt": "oxfmt"
   },
   "dependencies": {
-    "@sabinelab/players": "^2.0.0",
+    "@sabinelab/players": "^2.0.1",
     "elysia": "^1.4.28",
     "p-limit": "^7.3.0",
     "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@types/bun": "^1.3.14",
-    "oxfmt": "^0.52.0",
-    "oxlint": "^1.67.0",
+    "oxfmt": "^0.53.0",
+    "oxlint": "^1.68.0",
     "typescript": "^6.0.3"
   },
   "packageManager": "bun@1.3.14"
