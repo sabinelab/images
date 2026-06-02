@@ -20,7 +20,7 @@ on:
     branches: [main]
   push:
     branches: [main]
-    paths:
+    paths-ignore:
       - '**.md'
       - '.gitignore'
       - 'README*'
