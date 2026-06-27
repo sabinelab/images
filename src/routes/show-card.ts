@@ -1,6 +1,6 @@
 import { getPlayers } from '@sabinelab/players'
 import { Elysia, NotFoundError, t } from 'elysia'
-import sharp from 'sharp'
+import sharp, { type OverlayOptions } from 'sharp'
 import { config, type Key } from '../config'
 
 const players = new Set(getPlayers().map((p) => p.id))
@@ -46,7 +46,7 @@ export const showCard = new Elysia().get(
           collection = 'lockin'
         } else collection = query.collection.toLowerCase() as Key
 
-        const overlays: sharp.OverlayOptions[] = [
+        const overlays: OverlayOptions[] = [
           {
             input: `assets/roles/${collection}/${query.role}.png`,
             left: config.overlay[collection].role.left,
@@ -258,7 +258,7 @@ export const showCard = new Elysia().get(
           collection = 'base'
         }
 
-        const overlays: sharp.OverlayOptions[] = [
+        const overlays: OverlayOptions[] = [
           {
             input: `assets/roles/${collection}/${query.role}.png`,
             left:

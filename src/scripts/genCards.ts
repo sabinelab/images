@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import { getPlayers } from '@sabinelab/players'
 import pLimit from 'p-limit'
-import sharp from 'sharp'
+import sharp, { type OverlayOptions } from 'sharp'
 import { config, type Key } from '../config.ts'
 
 sharp.concurrency(1)
@@ -42,7 +42,7 @@ for (const player of getPlayers()) {
         collection = 'lockin'
       } else collection = player.collection.toLowerCase() as Key
 
-      const overlays: sharp.OverlayOptions[] = [
+      const overlays: OverlayOptions[] = [
         {
           input: `assets/roles/${collection}/${player.role}.png`,
           left: config.overlay[collection].role.left,
@@ -248,7 +248,7 @@ for (const player of getPlayers()) {
         collection = 'base'
       }
 
-      const overlays: sharp.OverlayOptions[] = [
+      const overlays: OverlayOptions[] = [
         {
           input: `assets/roles/${collection}/${player.role}.png`,
           left:
