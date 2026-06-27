@@ -1,12 +1,7 @@
 import fs from 'node:fs'
-import os from 'node:os'
 import { getPlayers } from '@sabinelab/players'
-import pLimit from 'p-limit'
 import sharp, { type OverlayOptions } from 'sharp'
-import { config, type Key } from '../config.ts'
-
-sharp.concurrency(1)
-sharp.cache(false)
+import { config, type Key } from '../config'
 
 const started = Date.now()
 
@@ -16,9 +11,7 @@ if (!fs.existsSync('output')) {
   fs.mkdirSync('output')
 }
 
-const limit = pLimit(os.cpus().length)
-
-const tasks: Promise<unknown>[] = []
+const tasks: (() => void)[] = []
 
 for (const player of getPlayers()) {
   const task = async () => {
@@ -433,9 +426,9 @@ for (const player of getPlayers()) {
     }
   }
 
-  tasks.push(limit(task))
+  tasks.push(task)
 }
 
-await Promise.all(tasks)
+await Promise.all(tasks.map((t) => t()))
 
 console.log(`cards generated in ${((Date.now() - started) / 1000).toFixed(1)}s`)
