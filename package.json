@@ -19,7 +19,7 @@
   "dependencies": {
     "@sabinelab/players": "^2.1.0",
     "elysia": "^1.4.29",
-    "sharp": "^0.35.2"
+    "sharp": "^0.35.3"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.2",
