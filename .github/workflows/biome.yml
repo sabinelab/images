@@ -1,4 +1,4 @@
-name: oxc format and check
+name: biome format and check
 on:
   push:
     branches: ['**']
@@ -17,17 +17,14 @@ on:
       - 'LICENSE'
       - '.github/**'
       - 'assets/**'
-
 jobs:
   format-and-lint:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
       pull-requests: write
       packages: read
-
     steps:
       - name: checkout code
         uses: actions/checkout@main
@@ -35,32 +32,21 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.head_ref || github.ref }}
           persist-credentials: true
-
-      - name: setup bun
-        uses: oven-sh/setup-bun@main
+      - name: setup biome
+        uses: biomejs/setup-biome@main
         with:
-          bun-version-file: package.json
-
-      - name: install dependencies
-        run: bun ci
-        env:
-          GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: run oxlint and oxfmt autofix
+          version: latest
+      - name: run biome autofix
         if: github.event_name == 'push'
-        run: |
-          bun lint --fix
-          bun fmt
-
+        run: biome check --write --no-errors-on-unmatched .
       - name: commit changes
         if: github.event_name == 'push'
         uses: stefanzweifel/git-auto-commit-action@master
         with:
-          commit_message: 'style: run oxc autofix'
+          commit_message: 'style: run biome autofix'
           commit_user_name: github-actions[bot]
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
           commit_author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-
       - name: write deploy metadata
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
@@ -68,7 +54,6 @@ jobs:
             echo "base_sha=${{ github.event.before }}"
             echo "deploy_sha=$(git rev-parse HEAD)"
           } > deploy.env
-
       - name: upload deploy metadata
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@main
@@ -76,11 +61,6 @@ jobs:
           name: deploy-metadata
           path: deploy.env
           retention-days: 1
-
-      - name: check formatting
+      - name: check with biome
         if: github.event_name == 'pull_request'
-        run: bun fmt --check
-
-      - name: run oxlint with github annotations
-        if: github.event_name == 'pull_request'
-        run: bun lint --format=github
+        run: biome ci --no-errors-on-unmatched .

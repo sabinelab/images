@@ -15,7 +15,7 @@ on:
         required: true
         type: string
   workflow_run:
-    workflows: ["oxc format and check"]
+    workflows: ["biome format and check"]
     types: [completed]
     branches: [main]
   push:
@@ -25,6 +25,7 @@ on:
       - '.gitignore'
       - 'README*'
       - 'LICENSE'
+      - 'assets/**'
 
 jobs:
   prepare-deploy:
@@ -89,7 +90,7 @@ jobs:
 
             while IFS= read -r file; do
               case "$file" in
-                *.md|.gitignore|README*|LICENSE) ;;
+                *.md|.gitignore|README*|LICENSE|assets/*) ;;
                 *) NON_IGNORED_FILES="$NON_IGNORED_FILES $file" ;;
               esac
             done < <(git diff --name-only "$BASE_SHA" "$DEPLOY_SHA")
@@ -97,7 +98,7 @@ jobs:
             if [ -z "$NON_IGNORED_FILES" ]; then
               SHOULD_DEPLOY="true"
             else
-              echo "Skipping direct deploy because this push includes files handled by the OXC workflow:"
+              echo "Skipping direct deploy because this push includes files handled by the Biome workflow:"
               echo "$NON_IGNORED_FILES" | xargs -n1 echo
             fi
           fi
@@ -172,7 +173,7 @@ jobs:
         env:
           DEPLOY_SHA: ${{ needs.prepare-deploy.outputs.deploy_sha }}
         run: |
-          # Fetch and deploy the exact commit that passed the OXC workflow.
+          # Fetch and deploy the exact commit that passed the Biome workflow.
           ssh prod "cd sabine/images && DEPLOY_SHA=\"$DEPLOY_SHA\" bash -c '
             set -euo pipefail
 
