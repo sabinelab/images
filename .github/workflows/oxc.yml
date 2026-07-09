@@ -50,7 +50,7 @@ jobs:
         if: github.event_name == 'push'
         run: |
           bun lint --fix
-          bun fmt
+          bun fmt '!.github/workflows'
 
       - name: commit changes
         if: github.event_name == 'push'
